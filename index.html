@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegacyKeep | Eternal Messages</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Fonts: Playfair Display (Serif) & Inter (Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Custom Config for soothing premium colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f9f8f6',  // Warm White/Beige
+                            100: '#f2eee9', // Mist
+                            200: '#e6ded5', // Sand
+                            300: '#d1c2b3',
+                            800: '#4a443e', // Deep Charcoal
+                            900: '#2c2825', // Black Coffee
+                        },
+                        gold: {
+                            400: '#d4af37',
+                            500: '#c5a028',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f9f8f6; /* soothing beige */
+            color: #2c2825;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1c2b3;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-200 selection:text-brand-900">
+
+    <!-- App Container -->
+    <div id="app" class="min-h-screen flex flex-col">
+        
+        <!-- Navigation -->
+        <nav class="fixed w-full z-50 bg-brand-50/90 backdrop-blur-md border-b border-brand-200 transition-all duration-300" id="navbar">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Logo -->
+                    <div class="flex items-center cursor-pointer" onclick="router('home')">
+                        <i data-lucide="feather" class="text-brand-900 w-6 h-6 mr-2"></i>
+                        <span class="font-serif text-2xl font-semibold tracking-tight text-brand-900">LegacyKeep</span>
+                    </div>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <button onclick="router('home')" class="text-sm font-medium text-brand-800 hover:text-gold-500 transition">Philosophy</button>
+                        <button onclick="router('verify')" class="text-sm font-medium text-brand-800 hover:text-gold-500 transition">Claim Legacy</button>
+                        
+                        <div id="auth-buttons" class="flex items-center space-x-4">
+                            if (user.email === ADMIN_EMAIL) {
+    container.innerHTML += `
+        <button onclick="router('admin')" 
+                class="text-sm font-semibold text-brand-900 border-b-2 border-brand-900">
+            Admin
+        </button>`;
+}
+
+                            <!-- Injected via JS based on login state -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main id="main-content" class="flex-grow pt-20">
+            <!-- Content injected by Router -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-brand-900 text-brand-200 py-12 border-t border-brand-800 mt-auto">
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+                <div>
+                    <span class="font-serif text-xl text-brand-50 block mb-4">LegacyKeep</span>
+                    <p class="text-sm opacity-80 leading-relaxed">
+                        Preserving your voice for the moments that matter most.<br>
+                        Secure, timeless, and delivered with dignity.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-serif text-lg text-brand-50 mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm opacity-80">
+                        <li>Scheduled Delivery</li>
+                        <li>Death Certificate Verification</li>
+                        <li>Physical Mail Service</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif text-lg text-brand-50 mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm opacity-80">
+                        <li>Privacy Policy</li>
+                        <li>Data Succession</li>
+                        <li>Terms of Service</li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+<!-- Supabase Client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://myamfmyqqvtsyknecpvw.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15YW1mbXlxcXZ0c3lrbmVjcHZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ4NjMyNTIsImV4cCI6MjA4MDQzOTI1Mn0.ynyP9KLOJ80DxdOApMHWkUFMuV2qxDDHmf6tuwPOHxE";
+  const supa = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+</script>
+
+    <!-- SCRIPTS -->
+    <script>
+        // --- 1. MOCK BACKEND (Simulating Supabase) ---
+        // In production, replace these functions with real Supabase calls.
+const ADMIN_EMAIL = "ms5799689@gmail.com";
+
+// REAL SUPABASE BACKEND
+const db = {
+
+    // ---------------- AUTH ----------------
+    async getUser() {
+        const { data } = await supa.auth.getUser();
+        return data.user;
+    },
+
+    async signIn(email, name) {
+        const { error } = await supa.auth.signInWithOtp({
+            email,
+            options: { data: { full_name: name } }
+        });
+        if (error) alert(error.message);
+        alert("Check your email — login link sent!");
+    },
+
+    async signOut() {
+        await supa.auth.signOut();
+        location.reload();
+    },
+
+    // ---------------- LETTERS ----------------
+    async getLetters() {
+        const { data, error } = await supa
+            .from("letters")
+            .select("*")
+            .order("id", { ascending: false });
+
+        return error ? [] : data;
+    },
+
+    async addLetter(letter) {
+        const user = await this.getUser();
+
+        const payload = {
+            user_id: user.id,
+            to_name: letter.toName,
+            to_email: letter.toEmail,
+            trigger_type: letter.triggerType,
+            trigger_date: letter.triggerDate || null,
+            content: btoa(letter.content),
+            encryption_meta: { method: "base64" }
+        };
+
+        const { error } = await supa.from("letters").insert(payload);
+        if (error) console.log(error);
+    },
+
+    // ---------------- VERIFICATION ----------------
+    async verifyDeath(certNumber, deceasedEmail) {
+        const { data: letters } = await supa
+            .from("letters")
+            .select("*")
+            .eq("trigger_type", "death")
+            .eq("to_email", deceasedEmail)
+            .eq("status", "locked");
+
+        if (!letters || letters.length === 0) return 0;
+
+        // Release each letter
+        for (const l of letters) {
+            await supa.from("letters").update({
+                status: "released",
+                released_at: new Date().toISOString()
+            }).eq("id", l.id);
+        }
+
+        return letters.length;
+    }
+};
+
+        // --- 2. ROUTER & VIEWS ---
+
+        const views = {
+            home: `
+                <div class="relative w-full h-[85vh] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" 
+                         class="absolute inset-0 w-full h-full object-cover opacity-90" alt="Peaceful desk">
+                    <div class="absolute inset-0 bg-gradient-to-r from-brand-50/90 to-transparent"></div>
+                    
+                    <div class="relative max-w-7xl mx-auto px-6 h-full flex items-center">
+                        <div class="max-w-2xl fade-in">
+                            <span class="text-gold-500 font-medium tracking-widest text-sm uppercase mb-4 block">The Digital Estate</span>
+                            <h1 class="font-serif text-5xl md:text-7xl text-brand-900 leading-tight mb-8">
+                                Write today.<br>
+                                <span class="italic text-brand-800/60">Be heard tomorrow.</span>
+                            </h1>
+                            <p class="text-xl text-brand-800 mb-10 leading-relaxed max-w-lg">
+                                Securely schedule letters for specific dates in the distant future, or release them automatically upon verified passing.
+                            </p>
+                            <div class="flex gap-4">
+                                <button onclick="handleStart()" class="bg-brand-900 text-brand-50 px-8 py-4 rounded-sm font-medium hover:bg-brand-800 transition shadow-lg">
+                                    Begin Your Legacy
+                                </button>
+                                <button onclick="router('verify')" class="px-8 py-4 border border-brand-900 text-brand-900 rounded-sm font-medium hover:bg-brand-100 transition">
+                                    Verify a Passing
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <section class="py-24 bg-white">
+                    <div class="max-w-7xl mx-auto px-6">
+                        <div class="grid md:grid-cols-3 gap-12 text-center">
+                            <div class="p-8">
+                                <div class="w-16 h-16 mx-auto bg-brand-100 rounded-full flex items-center justify-center mb-6 text-brand-800">
+                                    <i data-lucide="calendar-clock" class="w-8 h-8"></i>
+                                </div>
+                                <h3 class="font-serif text-2xl mb-4">Time-Locked Capsules</h3>
+                                <p class="text-brand-800/70">Schedule a message for your grandchild's 18th birthday, or simply "When I turn 80." The system waits for the exact moment.</p>
+                            </div>
+                            <div class="p-8">
+                                <div class="w-16 h-16 mx-auto bg-brand-100 rounded-full flex items-center justify-center mb-6 text-brand-800">
+                                    <i data-lucide="file-check" class="w-8 h-8"></i>
+                                </div>
+                                <h3 class="font-serif text-2xl mb-4">Certified Release</h3>
+                                <p class="text-brand-800/70">Link your account to official death registry verification. Letters are only decrypted upon confirmed certificate entry.</p>
+                            </div>
+                            <div class="p-8">
+                                <div class="w-16 h-16 mx-auto bg-brand-100 rounded-full flex items-center justify-center mb-6 text-brand-800">
+                                    <i data-lucide="shield" class="w-8 h-8"></i>
+                                </div>
+                                <h3 class="font-serif text-2xl mb-4">Sovereign Privacy</h3>
+                                <p class="text-brand-800/70">We use Supabase Row Level Security. Even we cannot read your letters before the release trigger conditions are met.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+            
+            dashboard: `
+                <div class="max-w-6xl mx-auto px-6 py-12 fade-in">
+                    <div class="flex justify-between items-end mb-12">
+                        <div>
+                            <h2 class="font-serif text-4xl text-brand-900 mb-2">Your Estate</h2>
+                            <p class="text-brand-800/60">Manage your pending letters and release conditions.</p>
+                        </div>
+                        <button onclick="router('compose')" class="flex items-center gap-2 bg-brand-900 text-brand-50 px-6 py-3 rounded-sm hover:bg-brand-800 transition shadow-md">
+                            <i data-lucide="pen-tool" class="w-4 h-4"></i> Compose New
+                        </button>
+                    </div>
+
+                    <div id="letters-grid" class="grid gap-6">
+                        <!-- Letters injected here -->
+                    </div>
+                </div>
+            `,
+
+            compose: `
+                <div class="max-w-3xl mx-auto px-6 py-12 fade-in">
+                    <button onclick="router('dashboard')" class="text-sm text-brand-800 mb-6 hover:underline">&larr; Back to Estate</button>
+                    
+                    <div class="bg-white p-10 rounded-lg shadow-xl border border-brand-100">
+                        <h2 class="font-serif text-3xl text-brand-900 mb-8">Draft a Legacy Letter</h2>
+                        
+                        <form id="compose-form" onsubmit="handleSaveLetter(event)" class="space-y-8">
+                            <!-- Recipient -->
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-brand-800/60 mb-2">Recipient Name</label>
+                                    <input type="text" name="toName" required class="w-full bg-brand-50 border border-brand-200 p-4 rounded-sm focus:outline-none focus:border-brand-900 transition" placeholder="e.g. My Daughter">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-brand-800/60 mb-2">Recipient Email</label>
+                                    <input type="email" name="toEmail" required class="w-full bg-brand-50 border border-brand-200 p-4 rounded-sm focus:outline-none focus:border-brand-900 transition" placeholder="email@address.com">
+                                </div>
+                            </div>
+
+                            <!-- Trigger Logic -->
+                            <div class="p-6 bg-brand-50 border border-brand-200 rounded-sm">
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-brand-800/60 mb-4">When should this be sent?</label>
+                                
+                                <div class="space-y-4">
+                                    <label class="flex items-start cursor-pointer p-4 bg-white border border-brand-200 rounded-sm hover:border-brand-400 transition">
+                                        <input type="radio" name="trigger" value="date" checked onclick="toggleTrigger('date')" class="mt-1 mr-4 accent-brand-900">
+                                        <div>
+                                            <span class="font-serif font-bold text-brand-900">Specific Date</span>
+                                            <p class="text-sm text-brand-800/60">"Send this on January 1, 2050" or "When I turn 80"</p>
+                                            <input type="date" id="date-input" class="mt-3 p-2 border border-brand-200 w-full text-sm block">
+                                        </div>
+                                    </label>
+
+                                    <label class="flex items-start cursor-pointer p-4 bg-white border border-brand-200 rounded-sm hover:border-brand-400 transition">
+                                        <input type="radio" name="trigger" value="death" onclick="toggleTrigger('death')" class="mt-1 mr-4 accent-brand-900">
+                                        <div>
+                                            <span class="font-serif font-bold text-brand-900">Upon Verified Passing</span>
+                                            <p class="text-sm text-brand-800/60">Releases only when a Death Certificate number is verified in our system.</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Content -->
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-brand-800/60 mb-2">Message</label>
+                                <textarea name="content" required rows="10" class="w-full bg-brand-50 border border-brand-200 p-6 rounded-sm focus:outline-none focus:border-brand-900 transition font-serif text-lg leading-relaxed" placeholder="My dearest..."></textarea>
+                            </div>
+
+                            <div class="flex justify-end items-center gap-4 pt-4 border-t border-brand-100">
+                                <span class="text-xs text-brand-800/50 flex items-center gap-1"><i data-lucide="lock" class="w-3 h-3"></i> Encrypted at rest</span>
+                                <button type="submit" class="bg-brand-900 text-brand-50 px-8 py-3 rounded-sm font-medium hover:bg-brand-800 transition shadow-md">
+                                    Seal & Schedule
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            `,
+
+            verify: `
+                <div class="min-h-[80vh] flex items-center justify-center p-6 bg-brand-100">
+                    <div class="max-w-xl w-full bg-white p-12 shadow-2xl rounded-sm fade-in">
+                        <div class="text-center mb-10">
+                            <div class="w-12 h-12 bg-brand-900 text-brand-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-lucide="file-check" class="w-6 h-6"></i>
+                            </div>
+                            <h2 class="font-serif text-3xl text-brand-900 mb-2">Claim Legacy</h2>
+                            <p class="text-brand-800/60">Enter official details to release verified estates.</p>
+                        </div>
+
+                        <form onsubmit="handleVerification(event)" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-brand-900 mb-1">Deceased Email Address</label>
+                                <input type="email" id="verify-email" required class="w-full p-3 border border-brand-200 rounded-sm focus:outline-none focus:border-brand-900" placeholder="e.g. relation@family.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-brand-900 mb-1">Death Certificate Number</label>
+                                <input type="text" id="verify-cert" required class="w-full p-3 border border-brand-200 rounded-sm focus:outline-none focus:border-brand-900" placeholder="e.g. REG-2024-XXXX-XXXX">
+                                <p class="text-xs text-brand-800/40 mt-1">Found on the top right of the official certificate.</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-brand-900 mb-1">Upload Scanned Document (Simulation)</label>
+                                <input type="file" id="certificate-file" 
+       class="w-full text-sm file:mr-4 file:py-2 file:px-4 
+       file:rounded-sm file:border-0 file:text-sm file:font-semibold 
+       file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100" 
+       accept="image/*,application/pdf"
+       required>
+
+                                <p class="text-xs text-brand-800/40 mt-1">File upload disabled in demo mode.</p>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brand-900 text-brand-50 py-3 rounded-sm font-medium hover:bg-brand-800 transition mt-4">
+                                Submit for Verification
+                            </button>
+                        </form>
+
+                        <div id="verify-result" class="mt-6 hidden p-4 bg-brand-50 text-center text-sm rounded-sm"></div>
+                    </div>
+                </div>
+            `,
+            admin: `
+  <div class="max-w-4xl mx-auto px-6 py-12 fade-in">
+    <h2 class="font-serif text-4xl text-brand-900 mb-6">Verification Requests</h2>
+    <p class="text-brand-700 mb-10">Approve or reject death certificate claims.</p>
+
+    <div id="admin-requests"></div>
+  </div>
+`
+,
+            auth: `
+                <div class="min-h-[80vh] flex items-center justify-center p-6">
+                    <div class="max-w-md w-full bg-white p-10 shadow-xl border border-brand-100 rounded-sm fade-in">
+                        <h2 class="font-serif text-3xl text-brand-900 mb-6 text-center">Welcome Back</h2>
+                        <form onsubmit="handleLogin(event)" class="space-y-4">
+                            <input type="text" id="login-name" required placeholder="Your Name" class="w-full p-3 border border-brand-200 rounded-sm focus:border-brand-900 outline-none">
+                            <input type="email" id="login-email" required placeholder="Your Email" class="w-full p-3 border border-brand-200 rounded-sm focus:border-brand-900 outline-none">
+                            <button type="submit" class="w-full bg-brand-900 text-white py-3 rounded-sm hover:bg-brand-800 transition">Access Vault</button>
+                        </form>
+                    </div>
+                </div>
+            `
+        };
+
+        // --- 3. APP LOGIC ---
+
+        function init() {
+            updateAuthUI();
+            router('home'); // Default route
+        }
+
+        function router(routeName) {
+            const main = document.getElementById('main-content');
+            main.innerHTML = views[routeName] || views.home;
+            
+            // Re-initialize icons for the new content
+            lucide.createIcons();
+
+            // specific view logic
+            if (routeName === 'dashboard') loadDashboard();
+            if (routeName === "admin") loadAdmin();
+
+        }
+
+        function updateAuthUI() {
+            const user = db.getUser();
+            const container = document.getElementById('auth-buttons');
+            
+            if (user) {
+                container.innerHTML = `
+                    <button onclick="router('dashboard')" class="text-sm font-semibold text-brand-900 border-b-2 border-brand-900">My Estate</button>
+                    <button onclick="handleLogout()" class="text-sm text-brand-500 hover:text-red-500"><i data-lucide="log-out" class="w-4 h-4"></i></button>
+                `;
+            } else {
+                container.innerHTML = `
+                    <button onclick="router('auth')" class="text-sm font-medium text-brand-900 hover:text-gold-600">Log In</button>
+                    <button onclick="router('auth')" class="bg-brand-900 text-brand-50 px-5 py-2 rounded-sm text-sm hover:bg-brand-800 transition">Get Started</button>
+                `;
+            }
+        }
+
+        function handleStart() {
+            const user = db.getUser();
+            if (user) router('compose');
+            else router('auth');
+        }
+async function approveRequest(id, deceasedEmail) {
+    // 1. Update verification status
+    await supa.from("verifications")
+      .update({ status: "approved", reviewed_at: new Date().toISOString() })
+      .eq("id", id);
+
+    // 2. Release all letters for this person
+    const { data: letters } = await supa
+      .from("letters")
+      .select("*")
+      .eq("to_email", deceasedEmail)
+      .eq("trigger_type", "death")
+      .eq("status", "locked");
+
+    for (const l of letters) {
+        await supa.from("letters")
+          .update({
+              status: "released",
+              released_at: new Date().toISOString()
+          })
+          .eq("id", l.id);
+    }
+
+    alert("Verification approved and letters released!");
+    router("admin");
+}
+
+async function rejectRequest(id) {
+    await supa.from("verifications")
+      .update({ status: "rejected", reviewed_at: new Date().toISOString() })
+      .eq("id", id);
+
+    alert("Verification rejected.");
+    router("admin");
+}
+
+async function handleLogin(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("login-name").value;
+    const email = document.getElementById("login-email").value;
+
+    await db.signIn(email, name);
+}
+
+        function handleLogout() {
+            db.signOut();
+        }
+
+        function toggleTrigger(type) {
+            const dateInput = document.getElementById('date-input');
+            if (type === 'death') {
+                dateInput.disabled = true;
+                dateInput.classList.add('opacity-50', 'bg-brand-100');
+            } else {
+                dateInput.disabled = false;
+                dateInput.classList.remove('opacity-50', 'bg-brand-100');
+            }
+        }
+
+async function handleSaveLetter(e) {
+    e.preventDefault();
+
+    const form = new FormData(e.target);
+    const user = await db.getUser();
+
+    const letter = {
+        toName: form.get("toName"),
+        toEmail: form.get("toEmail"),
+        content: form.get("content"),
+        triggerType: form.get("trigger"),
+        triggerDate: document.getElementById("date-input").value
+    };
+
+    await db.addLetter(letter);
+
+    alert("Letter securely stored in Supabase.");
+    router("dashboard");
+}
+
+async function loadDashboard() {
+    const user = await db.getUser();
+    if (!user) return router("auth");
+
+    const allLetters = await db.getLetters();
+    const myLetters = allLetters.filter(l => l.user_id === user.id);
+    const grid = document.getElementById("letters-grid");
+
+    if (myLetters.length === 0) {
+        grid.innerHTML = `
+            <div class="text-center py-20 bg-white border border-dashed">
+                <p class="text-brand-800/50 mb-4">The vault is empty.</p>
+                <button onclick="router('compose')" class="text-gold-500 font-medium hover:underline">Write your first letter</button>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = myLetters.map(l => `
+        <div class="bg-white p-6 rounded-sm shadow-sm border flex justify-between items-center">
+            <div>
+                <h4 class="font-serif text-xl">${l.to_name}</h4>
+                <p class="text-sm">${l.to_email}</p>
+                <p class="text-xs">${l.trigger_type === "death" ? "Release on passing" : l.trigger_date}</p>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-medium ${l.status === "released" ? "bg-green-200 text-green-700" : "bg-gray-200"}">
+                ${l.status.toUpperCase()}
+            </span>
+        </div>
+    `).join("");
+}
+async function loadAdmin() {
+    const user = await db.getUser();
+    if (!user || user.email !== ADMIN_EMAIL) return router("home");
+
+    const container = document.getElementById("admin-requests");
+
+    const { data, error } = await supa
+        .from("verifications")
+        .select("*")
+        .order("id", { ascending: false });
+
+    if (error || !data.length) {
+        container.innerHTML = `<p>No verification requests yet.</p>`;
+        return;
+    }
+
+    container.innerHTML = data.map(v => `
+        <div class="p-6 bg-white border rounded-sm shadow-sm mb-6">
+            <h3 class="font-serif text-xl mb-2">Request #${v.id}</h3>
+            <p><b>Email:</b> ${v.deceased_email}</p>
+            <p><b>Certificate Number:</b> ${v.certificate_number}</p>
+            <p><b>Status:</b> <span class="text-brand-800">${v.status}</span></p>
+            <a href="${v.uploaded_doc_url}" target="_blank" class="text-brand-900 underline block mt-2">
+                View Certificate
+            </a>
+
+            ${v.status === "pending" ? `
+              <div class="flex gap-4 mt-4">
+                <button onclick="approveRequest(${v.id}, '${v.deceased_email}')"
+                        class="bg-green-700 text-white px-4 py-2 rounded-sm hover:bg-green-800">
+                    Approve
+                </button>
+                <button onclick="rejectRequest(${v.id})"
+                        class="bg-red-700 text-white px-4 py-2 rounded-sm hover:bg-red-800">
+                    Reject
+                </button>
+              </div>
+            ` : ""}
+        </div>
+    `).join("");
+}
+
+async function uploadCertificate(file) {
+    const fileName = `cert-${Date.now()}-${file.name}`;
+
+    // Upload file
+    const { data, error } = await supa.storage
+        .from("certificates")
+        .upload(fileName, file);
+
+    if (error) {
+        console.log("Upload error:", error);
+        return null;
+    }
+
+    // Get public URL (or use signed URL)
+    const { data: urlData } = await supa.storage
+        .from("certificates")
+        .getPublicUrl(fileName);
+
+    return urlData.publicUrl;
+}
+
+async function handleVerification(e) {
+    e.preventDefault();
+
+    const deceasedEmail = document.getElementById("verify-email").value;
+    const certNumber = document.getElementById("verify-cert").value;
+    const file = document.getElementById("certificate-file").files[0];
+    const resultDiv = document.getElementById("verify-result");
+
+    resultDiv.classList.remove("hidden");
+    resultDiv.innerHTML = "Uploading certificate...";
+
+    // 1. Upload certificate
+    const fileUrl = await uploadCertificate(file);
+
+    if (!fileUrl) {
+        resultDiv.innerHTML = "❌ Upload failed. Try again.";
+        return;
+    }
+
+    resultDiv.innerHTML = "Submitting verification request...";
+
+    // 2. Insert record into verifications table
+    const { error } = await supa.from("verifications").insert({
+        deceased_email: deceasedEmail,
+        certificate_number: certNumber,
+        uploaded_doc_url: fileUrl,
+        status: "pending"
+    });
+
+    if (error) {
+        console.log(error);
+        resultDiv.innerHTML = "❌ Failed to submit verification request.";
+        return;
+    }
+
+    // SUCCESS
+    resultDiv.classList.add("bg-brand-100");
+    resultDiv.innerHTML = `
+        ✔ Verification request submitted.<br>
+        Our team will manually review the certificate and release letters if valid.
+    `;
+}
+
+        // Init App
+        window.addEventListener('DOMContentLoaded', init);
+        
+    </script>
+</body>
+</html>
